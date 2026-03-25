@@ -1,10 +1,11 @@
-use suprasphere::treasury;
+
 module suprasphere::identity {
 
     use std::signer;
     use std::vector;
     use std::string;
     use std::option;
+    use suprasphere::treasury;
 
     const E_ALREADY_REGISTERED: u64 = 1;
     const E_USERNAME_TAKEN: u64 = 2;
@@ -55,8 +56,7 @@ module suprasphere::identity {
             E_ALREADY_REGISTERED
         );
 
-        let registry = borrow_global_mut<Registry>([@suprasphere](https://farcaster.xyz/suprasphere));
-
+        let registry = borrow_global_mut<Registry>(@suprasphere);
         // Ensure username uniqueness
         let mut i = 0;
         let total = vector::length(&registry.usernames);
@@ -69,7 +69,11 @@ module suprasphere::identity {
             );
             i = i + 1;
         };
+      // Get current registration fee
+let fee = treasury::get_registration_fee();
 
+// Collect fee (actual SUPRA transfer wiring later)
+treasury::collect_fee(fee);
         // Increment ID counter
         registry.counter = registry.counter + 1;
 
