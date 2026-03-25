@@ -73,7 +73,7 @@ module suprasphere::identity {
 let fee = treasury::get_registration_fee();
 
 // Collect fee (actual SUPRA transfer wiring later)
-treasury::collect_fee(fee);
+treasury::collect_fee(user, fee);
         // Increment ID counter
         registry.counter = registry.counter + 1;
 
