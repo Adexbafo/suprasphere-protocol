@@ -1,4 +1,4 @@
-
+use suprasphere::treasury;
 module suprasphere::identity {
 
     use std::signer;
