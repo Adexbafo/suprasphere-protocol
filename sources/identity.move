@@ -1,8 +1,8 @@
 module suprasphere::identity {
 
-   use 0x1::signer;
-   use 0x1::vector;
-   use 0x1::string;
+    use signer;
+    use vector;
+    use string;
     use suprasphere::treasury;
 
     const E_ALREADY_REGISTERED: u64 = 1;
