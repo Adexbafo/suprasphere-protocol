@@ -1,8 +1,8 @@
 module suprasphere::identity {
 
-    use signer;
-    use vector;
-    use string;
+    use 0x1::signer;
+    use 0x1::vector;
+    use 0x1::string;
     use suprasphere::treasury;
 
     const E_ALREADY_REGISTERED: u64 = 1;
@@ -41,7 +41,7 @@ module suprasphere::identity {
             E_ALREADY_REGISTERED
         );
 
-        // Cleaned the address syntax
+        // Fixed: Removed the URL and brackets to use the clean named address
         let registry = borrow_global_mut<Registry>(@suprasphere);
 
         let fee = treasury::get_registration_fee();
