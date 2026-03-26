@@ -1,8 +1,8 @@
 module suprasphere::identity {
 
-    use std::signer;
-    use std::vector;
-    use std::string;
+    use 0x1::signer;
+    use 0x1::vector;
+    use 0x1::string;
     use suprasphere::treasury;
 
     const E_ALREADY_REGISTERED: u64 = 1;
@@ -36,26 +36,21 @@ module suprasphere::identity {
 
         let user_addr = signer::address_of(user);
 
-        // Prevent double registration
         assert!(
             !exists<SSIN>(user_addr),
             E_ALREADY_REGISTERED
         );
 
-        // Fixed: Removed URL artifact and fixed the address syntax
+        // Cleaned the address syntax
         let registry = borrow_global_mut<Registry>(@suprasphere);
 
-        // Collect registration fee
         let fee = treasury::get_registration_fee();
         treasury::collect_fee(user, fee);
 
-        // Increment counter
         registry.counter = registry.counter + 1;
 
-        // Store username
         vector::push_back(&mut registry.usernames, username);
 
-        // Create SSIN
         move_to(user, SSIN {
             id: registry.counter,
             username,
