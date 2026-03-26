@@ -58,17 +58,17 @@ module suprasphere::identity {
 
         let registry = borrow_global_mut<Registry>(@suprasphere);
         // Ensure username uniqueness
-        let mut i = 0;
-        let total = vector::length(&registry.usernames);
+        let i: u64 = 0;
+let total = vector::length(&registry.usernames);
 
-        while (i < total) {
-            let existing = vector::borrow(&registry.usernames, i);
-            assert!(
-                *existing != username,
-                E_USERNAME_TAKEN
-            );
-            i = i + 1;
-        };
+while (i < total) {
+    let existing = vector::borrow(&registry.usernames, i);
+    assert!(
+        *existing != username,
+        E_USERNAME_TAKEN
+    );
+    i = i + 1;
+};
       // Get current registration fee
 let fee = treasury::get_registration_fee();
 
