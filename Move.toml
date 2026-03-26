@@ -6,3 +6,4 @@ version = "0.0.1"
 suprasphere = "0x135741423496ac7bac5d2880445e3da2caeddfdca92913d8ff5b0bfb84c21d6d"
 
 [dependencies]
+SupraFramework = { git = "https://github.com/Entropy-Foundation/supra-framework.git", rev = "main", subdir = "framework/move-stdlib" }
