@@ -1,6 +1,6 @@
 module suprasphere::treasury {
 
-    use std::signer;
+    use 0x1::signer;
 
     struct Treasury has key {
         total_collected: u64,
