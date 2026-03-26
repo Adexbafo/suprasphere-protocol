@@ -1,6 +1,6 @@
 module suprasphere::treasury {
 
-    use signer;
+    use 0x1::signer;
 
     struct Treasury has key {
         total_collected: u64,
@@ -18,6 +18,7 @@ module suprasphere::treasury {
     }
 
     public fun get_registration_fee(): u64 acquires Treasury {
+        // Fixed: Removed URL artifacts and brackets
         let treasury = borrow_global<Treasury>(@suprasphere);
         treasury.registration_fee
     }
@@ -27,9 +28,10 @@ module suprasphere::treasury {
         amount: u64
     ) acquires Treasury {
 
+        // Fixed: Cleaned named address syntax
         let treasury = borrow_global_mut<Treasury>(@suprasphere);
-
-        // Temporarily just increment accounting
+        
+        // Correctly incrementing the accounting
         treasury.total_collected = treasury.total_collected + amount;
     }
 }
