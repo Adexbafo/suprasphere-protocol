@@ -58,7 +58,7 @@ module suprasphere::identity {
 
         let registry = borrow_global_mut<Registry>(@suprasphere);
         // Ensure username uniqueness
-        let i: u64 = 0;
+        let i = 0;
 let total = vector::length(&registry.usernames);
 
 while (i < total) {
@@ -69,6 +69,67 @@ while (i < total) {
     );
     i = i + 1;
 };
+⚠️ BUT — This Will Still Fail
+Because Move does not allow reassignment like:
+
+i = i + 1;
+So the proper Move way is to use:
+
+let mut i = 0;
+BUT Supra Move compiler here expects explicit typing.
+
+So the correct fix is:
+
+✅ FINAL CORRECT VERSION
+Replace:
+
+let mut i = 0;
+With:
+
+let mut i: u64 = 0;
+So the whole block becomes:
+
+let mut i: u64 = 0;
+let total = vector::length(&registry.usernames);
+
+while (i < total) {
+    let existing = vector::borrow(&registry.usernames, i);
+    assert!(
+        *existing != username,
+        E_USERNAME_TAKEN
+    );
+    i = i + 1;
+};
+✅ Why This Works
+Supra Move requires explicit typing for mutable variables.
+
+Without
+: u64
+, it throws parsing error.
+
+✅ Update identity.move
+Use the same overwrite method:
+
+cat > sources/identity.move << 'EOF'
+(then paste full corrected module)
+
+Or edit only that line carefully.
+
+✅ Then Publish Again
+supra move tool publish
+Tell me once you change
+let mut i = 0;
+to:
+
+let mut i: u64 = 0;
+Then we retry publish.
+
+We’re very close. 🔥
+
+
+
+
+
       // Get current registration fee
 let fee = treasury::get_registration_fee();
 
