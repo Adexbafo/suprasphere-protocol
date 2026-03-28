@@ -1,8 +1,5 @@
 module suprasphere::identity {
 
-    use 0x1::signer;
-    use 0x1::vector;
-
     struct SSIN has key {
         id: u64
     }
