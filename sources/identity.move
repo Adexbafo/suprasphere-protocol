@@ -1,7 +1,5 @@
 module suprasphere::identity {
-    use std::signer;
 
-    /// Resources
     struct SSIN has key {
         id: u64
     }
@@ -16,9 +14,6 @@ module suprasphere::identity {
         counter: u64
     }
 
-    /// Error codes
-    const E_NOT_AUTHORIZED: u64 = 1;
-
     public entry fun initialize(account: &signer) {
         move_to(account, SSIN { id: 1 });
     }
@@ -32,10 +27,8 @@ module suprasphere::identity {
         username: vector<u8>,
         timestamp: u64
     ) acquires Registry {
-        // Corrected the global borrow syntax. 
-        // Replaced the placeholder with a standard address literal.
-        let registry_addr = @suprasphere; 
-        let registry = borrow_global_mut<Registry>(registry_addr);
+
+        let registry = borrow_global_mut<Registry>(@suprasphere);
 
         registry.counter = registry.counter + 1;
 
