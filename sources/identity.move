@@ -30,6 +30,9 @@ module suprasphere::identity {
 
         let registry = borrow_global_mut<Registry>(@suprasphere);
 
+        // ✅ NEW: collect registration fee
+        suprasphere::treasury::collect_fee(account);
+
         registry.counter = registry.counter + 1;
 
         move_to(account, Profile {
