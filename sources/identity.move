@@ -23,22 +23,22 @@ module suprasphere::identity {
     }
 
     public entry fun register(
-        account: &signer,
-        username: vector<u8>,
-        timestamp: u64
-    ) acquires Registry {
+    account: &signer,
+    username: vector<u8>,
+    timestamp: u64
+) acquires Registry {
 
-        let registry = borrow_global_mut<Registry>(@suprasphere);
+    let registry = borrow_global_mut<Registry>(@suprasphere);
 
-        // ✅ NEW: deduct registration fee
-        suprasphere::treasury::collect_fee(account);
+    // ✅ Deduct 1000 SUPRA
+    suprasphere::treasury::collect_fee(account);
 
-        registry.counter = registry.counter + 1;
+    registry.counter = registry.counter + 1;
 
-        move_to(account, Profile {
-            username,
-            reputation: 0,
-            created_at: timestamp,
-        });
-    }
+    move_to(account, Profile {
+        username,
+        reputation: 0,
+        created_at: timestamp,
+    });
+}
 }
