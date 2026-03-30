@@ -13,19 +13,16 @@ module suprasphere::treasury {
         move_to(account, Treasury { total_collected: 0 });
     }
 
-    public fun get_registration_fee(): u64 {
-        REGISTRATION_FEE
-    }
-
     public fun collect_fee(account: &signer) acquires Treasury {
         let treasury = borrow_global_mut<Treasury>(@suprasphere);
 
         coin::transfer<SupraCoin>(
             account,
-            @suprasphere,
+            @suprasphere
             REGISTRATION_FEE
         );
 
-        treasury.total_collected = treasury.total_collected + REGISTRATION_FEE;
+        treasury.total_collected =
+            treasury.total_collected + REGISTRATION_FEE;
     }
 }
