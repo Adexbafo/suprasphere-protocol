@@ -1,0 +1,10 @@
+[package]
+name = "suprasphere_protocol"
+version = "0.0.1"
+
+[addresses]
+suprasphere = "0x501075886abca8a88e872576e49236661b525ee3f256454d14185abad5981d2a"
+
+
+
+
