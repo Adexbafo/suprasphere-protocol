@@ -1,144 +1,106 @@
 SupraSphere Protocol
-A Decentralized Identity-Native Social Infrastructure on Supra
-1. Abstract
-SupraSphere Protocol is a decentralized identity‑native social infrastructure built on the Supra blockchain using Move.
+Identity Layer. Social Graph Layer. Application Platform Layer.
+Version: v0.3
 
-It introduces:
+1. Vision
+SupraSphere is a layered decentralized social infrastructure built on Supra.
 
-SSIN‑01 (SupraSphere Identity Number) — one wallet, one identity.
-A fee‑based registration mechanism using SUPRA.
-Upgrade-compatible modular architecture.
-A treasury-driven economic model.
-A foundation for future MiniApps and intelligent agents.
-SupraSphere is not just an application — it is a protocol layer for decentralized social coordination.
+It is designed as:
 
-2. Problem Statement
-Modern social platforms suffer from:
+Layer 1 — On‑chain Identity
+Layer 2 — Social Graph
+Layer 3 — Application Platform
 
-Centralized identity control
-Account duplication and spam
-Data ownership opacity
-Monetization capture by corporations
-Closed platform ecosystems
-SupraSphere solves these by:
+SupraSphere is not an application — it is protocol infrastructure.
 
-Making identity on-chain
-Enforcing economic anti‑Sybil registration
-Designing for upgrade compatibility
-Enabling modular expansion
-3. Identity Model (SSIN‑01)
-Core Principles
-One wallet → One profile
-Identity is wallet‑bound
-Profile creation requires economic commitment
-Reputation accumulates over time
-Upgrade-safe storage model
-SSIN Structure
-struct SSIN {
-    id: u64
-}
-Profile Structure
-struct Profile {
-    username: vector<u8>,
-    reputation: u64,
-    created_at: u64
-}
-Registry Structure
-struct Registry {
-    counter: u64
-}
-4. Economic Registration Model
-Registration Fee
-Fixed: 1000 SUPRA
-Paid before calling
-register()
-Recorded via
-treasury::record_fee()
-Anti-Sybil Mechanism
-The registration fee creates:
+2. Layer 1 — Identity Layer (SSIN‑01)
+One Wallet → One Profile
+Each wallet may create exactly one profile.
 
-Economic cost per identity
-Natural deterrence against spam
-Scarcity of identity
-5. Treasury Model
-struct Treasury {
-    total_collected: u64
-}
-Treasury tracks:
+struct SSIN
+struct Profile
+struct Registry
+Economic Registration
+Registration requires:
 
-Total SUPRA collected from registrations
-Future uses:
+• Manual transfer of 1000 SUPRA
+• On-chain accounting via treasury
 
-Protocol-owned liquidity
-Governance incentives
-SSOC ecosystem funding
-6. Upgrade Policy
-SupraSphere uses:
+Purpose:
 
-upgrade_policy: compatible
+• Anti-Sybil enforcement
+• Identity scarcity
+• Protocol funding
+
+3. Layer 2 — Social Graph
+Profiles interact through:
+
+• Space membership
+• Content posting (future module)
+• Reputation tracking
+
+Space module:
+
+struct Space
+struct SpaceRegistry
+Hybrid economic model:
+
+Phase 1 — 500 SUPRA
+Phase 2 — SSOC stake (governance defined)
+
+4. Layer 3 — SuperTinyApp Platform
+SupraSphere will support embedded mini applications:
+
+• On-chain app registry
+• Staked app deployment
+• Revenue-sharing model
+• Space-bound app permissions
+
+This transforms SupraSphere into a programmable social infrastructure.
+
+5. Sphere Agent (Protocol Intelligence)
+Sphere will operate as an off-chain intelligence layer:
+
+• Event indexing
+• Reputation computation
+• Spam detection
+• Governance analytics
+
+It enhances the protocol without centralizing control.
+
+6. Treasury Model
+Treasury records:
+
+• Registration fees
+• Space creation fees
+
+Future:
+
+• Protocol-owned liquidity
+• Incentive programs
+• Governance funding
+
+7. Upgrade Policy
+SupraSphere enforces compatible upgrades.
+
 This ensures:
 
-No storage-breaking upgrades
-Struct layout preservation
-Predictable protocol evolution
-Future modules are added additively.
+• Storage safety
+• Predictable evolution
+• Additive module expansion
 
-7. Username & Domain Model
-Current version:
+8. Roadmap
+Phase 1 ✅
+• Identity core
+• Treasury accounting
+• Space module (Phase 1)
 
-Username stored as
-vector<u8>
-One profile per wallet
-Future extension:
+Phase 2
+• Username uniqueness (SDK-enabled)
+• SSOC token
+• Staking
 
-struct Profile {
-    username: vector<u8>,
-    domain: vector<u8>, // .supra support
-    reputation: u64,
-    created_at: u64
-}
-Domain ownership validation handled at application layer.
-
-8. Future Extensions
-8.1 SuperTinyApp Framework
-A modular MiniApp ecosystem allowing:
-
-Third‑party social extensions
-On-chain app registration
-Staked app deployment
-Revenue sharing
-8.2 Sphere Agent
-An off-chain intelligence engine:
-
-Monitors posts
-Calculates reputation
-Flags spam
-Feeds governance metrics
-9. Roadmap
-Phase 1:
-
-Identity core ✅
-Treasury accounting ✅
-Registration economics ✅
-Phase 2:
-
-Username uniqueness (table-based)
-Space (Channel) module
-Staking model
-Phase 3:
-
-SSOC token
-Governance
-MiniApp registry
-Phase 4:
-
-Sphere AI Agent
-Full mobile client
-10. Vision
-SupraSphere aims to become:
-
-Supra’s identity layer
-Supra’s social graph
-Supra’s MiniApp platform
-A decentralized social coordination infrastructure
-
+Phase 3
+• Governance
+• SuperTinyApp registry
+• Sphere agent
