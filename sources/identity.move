@@ -22,24 +22,24 @@ module suprasphere::identity {
         move_to(account, Registry { counter: 1 });
     }
 
-     public entry fun register(
-    account: &signer,
-    username: vector<u8>,
-    timestamp: u64
-) acquires Registry {
+    public entry fun register(
+        account: &signer,
+        username: vector<u8>,
+        timestamp: u64
+    ) acquires Registry {
 
-    let registry = borrow_global_mut<Registry>(@suprasphere);
+        let registry = borrow_global_mut<Registry>(@suprasphere);
 
-    // Record payment (assumes user already transferred 1000 SUPRA)
-    suprasphere::treasury::record_fee();
+        // Economic accounting (assumes payment already sent)
+        suprasphere::treasury::record_fee();
 
-    registry.counter = registry.counter + 1;
+        registry.counter = registry.counter + 1;
 
-    move_to(account, Profile {
-        username,
-        reputation: 0,
-        created_at: timestamp,
-    });
-}
+        move_to(account, Profile {
+            username,
+            reputation: 0,
+            created_at: timestamp,
+        });
+    }
 }
 
