@@ -1,113 +1,144 @@
 SupraSphere Protocol
 A Decentralized Identity-Native Social Infrastructure on Supra
-Abstract
-SupraSphere Protocol is a permissionless, identity-native, upgradeable social infrastructure built on the Supra blockchain using Move.
+1. Abstract
+SupraSphere Protocol is a decentralized identity‑native social infrastructure built on the Supra blockchain using Move.
 
-It introduces SSIN‑01 (Supra Social Identity Number) — a one-wallet, one-identity standard — and a fixed-supply utility token ($SSOC) that powers governance, incentives, staking, and ecosystem coordination.
+It introduces:
 
-SupraSphere is not an application.
-It is a protocol layer that enables developers to build decentralized, encrypted, mobile-first social applications on Supra.
+SSIN‑01 (SupraSphere Identity Number) — one wallet, one identity.
+A fee‑based registration mechanism using SUPRA.
+Upgrade-compatible modular architecture.
+A treasury-driven economic model.
+A foundation for future MiniApps and intelligent agents.
+SupraSphere is not just an application — it is a protocol layer for decentralized social coordination.
 
-1. Vision
-Social media today suffers from:
+2. Problem Statement
+Modern social platforms suffer from:
 
-Platform-controlled identities
-Centralized moderation
-Data extraction without ownership
-Algorithm opacity
+Centralized identity control
+Account duplication and spam
+Data ownership opacity
 Monetization capture by corporations
-SupraSphere redefines social infrastructure by making:
+Closed platform ecosystems
+SupraSphere solves these by:
 
-Identity onchain
-Reputation transparent
-Governance token-driven
-Content portable
-Incentives community-aligned
-SupraSphere aims to become the identity and social coordination layer of Supra.
-
-2. Core Principles
-One Human → One SSIN
-Permissionless Access
-Fixed Supply Economic Model
-Governance-Controlled Upgrades
-Event-Driven Architecture
-Developer-Composable Modules
-Mobile-First UX
-3. SSIN‑01 Identity Standard
-Each wallet may register one SSIN.
-
-Registration requires:
-
-$5 worth of SUPRA (native token)
-SSIN is:
-
-Non-transferable (soulbound)
-Globally unique
-Publicly queryable
-Reputation-enabled
-Encryption-ready
+Making identity on-chain
+Enforcing economic anti‑Sybil registration
+Designing for upgrade compatibility
+Enabling modular expansion
+3. Identity Model (SSIN‑01)
+Core Principles
+One wallet → One profile
+Identity is wallet‑bound
+Profile creation requires economic commitment
+Reputation accumulates over time
+Upgrade-safe storage model
 SSIN Structure
 struct SSIN {
     id: u64
-    owner: address
-    username: string
-    domain: optional .supra
-    pubkey: bytes
-    reputation: u64
+}
+Profile Structure
+struct Profile {
+    username: vector<u8>,
+    reputation: u64,
     created_at: u64
 }
-Rules:
+Registry Structure
+struct Registry {
+    counter: u64
+}
+4. Economic Registration Model
+Registration Fee
+Fixed: 1000 SUPRA
+Paid before calling
+register()
+Recorded via
+treasury::record_fee()
+Anti-Sybil Mechanism
+The registration fee creates:
 
-One SSIN per wallet
-Username must be globally unique
-.supra domains override display name
-Reputation increases via participation
-Misbehavior causes slashing
-4. Tokenomics — $SSOC
-Total Supply: Fixed (e.g., 1,000,000,000 SSOC)
+Economic cost per identity
+Natural deterrence against spam
+Scarcity of identity
+5. Treasury Model
+struct Treasury {
+    total_collected: u64
+}
+Treasury tracks:
 
-No future minting.
+Total SUPRA collected from registrations
+Future uses:
 
-$SSOC Utility:
+Protocol-owned liquidity
+Governance incentives
+SSOC ecosystem funding
+6. Upgrade Policy
+SupraSphere uses:
 
-Tipping creators
-Creating SPACES (channels)
-Governance voting
-Staking for visibility
-Reward distribution multiplier
-5. Economic Flywheel
-User registers SSIN → pays SUPRA
-SUPRA collected in Treasury
-Treasury builds SSOC liquidity
-SSOC used for staking & tipping
-Burn mechanics create scarcity
-Governance aligns long-term incentives
-6. SPACES (Decentralized Channels)
-Creating a SPACE requires staking SSOC.
+upgrade_policy: compatible
+This ensures:
 
-SPACE creators earn:
+No storage-breaking upgrades
+Struct layout preservation
+Predictable protocol evolution
+Future modules are added additively.
 
-% of tipping within SPACE
-% of boosted posts
-Optional subscription mechanics
-This incentivizes community builders.
+7. Username & Domain Model
+Current version:
 
-7. Governance
-SupraSphere is upgradeable via governance.
+Username stored as
+vector<u8>
+One profile per wallet
+Future extension:
 
-Proposal threshold required
-Quorum enforced
-Time-lock execution
-No centralized admin control after launch
-8. Architecture Overview
-Layer 1: Identity (SSIN‑01)
-Layer 2: Social Graph
-Layer 3: Content Registry
-Layer 4: Incentive & Token Layer
-Layer 5: Governance
+struct Profile {
+    username: vector<u8>,
+    domain: vector<u8>, // .supra support
+    reputation: u64,
+    created_at: u64
+}
+Domain ownership validation handled at application layer.
 
-🔥 That’s a solid v0.1 whitepaper core.
+8. Future Extensions
+8.1 SuperTinyApp Framework
+A modular MiniApp ecosystem allowing:
 
+Third‑party social extensions
+On-chain app registration
+Staked app deployment
+Revenue sharing
+8.2 Sphere Agent
+An off-chain intelligence engine:
 
+Monitors posts
+Calculates reputation
+Flags spam
+Feeds governance metrics
+9. Roadmap
+Phase 1:
 
+Identity core ✅
+Treasury accounting ✅
+Registration economics ✅
+Phase 2:
+
+Username uniqueness (table-based)
+Space (Channel) module
+Staking model
+Phase 3:
+
+SSOC token
+Governance
+MiniApp registry
+Phase 4:
+
+Sphere AI Agent
+Full mobile client
+10. Vision
+SupraSphere aims to become:
+
+Supra’s identity layer
+Supra’s social graph
+Supra’s MiniApp platform
+A decentralized social coordination infrastructure
 
