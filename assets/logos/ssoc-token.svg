@@ -1,0 +1,20 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tokenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A86FF"/>
+      <stop offset="100%" stop-color="#00F5D4"/>
+    </linearGradient>
+  </defs>
+
+  <polygon points="110,20 180,60 180,140 110,180 40,140 40,60"
+           fill="#0F172A"/>
+
+  <circle cx="110" cy="110" r="40"
+          fill="url(#tokenGrad)"/>
+
+  <circle cx="110" cy="110" r="55"
+          stroke="#3A86FF"
+          stroke-width="3"
+          fill="none"
+          stroke-linecap="round"/>
+</svg>

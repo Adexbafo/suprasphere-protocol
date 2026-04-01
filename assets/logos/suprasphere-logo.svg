@@ -1,0 +1,54 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+    <linearGradient id="outerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+
+      <stop offset="0%" stop-color="#3A86FF"/>
+
+      <stop offset="100%" stop-color="#8338EC"/>
+
+    </linearGradient>
+
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+
+      <stop offset="0%" stop-color="#00F5D4"/>
+
+      <stop offset="100%" stop-color="#3A86FF"/>
+
+    </linearGradient>
+
+  </defs>
+
+
+
+  <circle cx="110" cy="110" r="80"
+
+          stroke="url(#outerGrad)"
+
+          stroke-width="8"
+
+          fill="none"
+
+          stroke-linecap="round"/>
+
+
+
+  <circle cx="110" cy="110" r="55"
+
+          stroke="#3A86FF"
+
+          stroke-width="6"
+
+          fill="none"
+
+          stroke-linecap="round"/>
+
+
+
+  <circle cx="110" cy="110" r="25"
+
+          fill="url(#coreGrad)"/>
+
+</svg>
+
